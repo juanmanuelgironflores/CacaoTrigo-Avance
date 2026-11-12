@@ -1,0 +1,56 @@
+@model IEnumerable<CacaoTrigo.Models.DetallePedido>
+
+@{
+    ViewData["Title"] = "Detalles de pedidos";
+}
+
+<h1>Detalles de pedidos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Agregar producto a un pedido</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Pedido</th>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio unitario</th>
+            <th>Subtotal</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    Pedido #@item.PedidoId
+                    @if (item.Pedido != null)
+                    {
+                        <span> - @item.Pedido.NombreContacto</span>
+                    }
+                </td>
+                <td>
+                    @if (item.Producto != null)
+                    {
+                        @item.Producto.Nombre
+                    }
+                    else
+                    {
+                        <span>Producto no disponible</span>
+                    }
+                </td>
+                <td>@item.Cantidad</td>
+                <td>$@item.PrecioUnitario.ToString("0.00")</td>
+                <td>$@item.Subtotal.ToString("0.00")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.DetallePedidoId">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.DetallePedidoId">Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.DetallePedidoId">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

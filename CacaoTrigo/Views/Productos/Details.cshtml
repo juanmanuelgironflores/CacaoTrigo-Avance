@@ -1,0 +1,36 @@
+@model CacaoTrigo.Models.Producto
+
+@{
+    ViewData["Title"] = "Detalles del producto";
+}
+
+<h1>Detalles del producto</h1>
+
+<hr />
+
+<dl class="row">
+    <dt class="col-sm-3">Nombre</dt>
+    <dd class="col-sm-9">@Model.Nombre</dd>
+
+    <dt class="col-sm-3">Descripción</dt>
+    <dd class="col-sm-9">@(Model.Descripcion ?? "Sin descripción")</dd>
+
+    <dt class="col-sm-3">Precio</dt>
+    <dd class="col-sm-9">@Model.Precio.ToString("0.00")</dd>
+
+    <dt class="col-sm-3">URL de imagen</dt>
+    <dd class="col-sm-9">@(Model.ImagenUrl ?? "Sin imagen")</dd>
+
+    <dt class="col-sm-3">Disponible</dt>
+    <dd class="col-sm-9">@(Model.Disponible ? "Sí" : "No")</dd>
+
+    <dt class="col-sm-3">Categoría</dt>
+    <dd class="col-sm-9">@(Model.Categoria?.Nombre ?? "Sin categoría")</dd>
+</dl>
+
+<p>
+    <a asp-action="Edit"
+       asp-route-productoid="@Model.ProductoId"
+       class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
+</p>

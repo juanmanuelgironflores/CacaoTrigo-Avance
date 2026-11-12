@@ -1,0 +1,121 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="container py-4">
+
+    <section class="bg-light rounded-4 shadow-sm text-center p-5 mb-5">
+        <h1 class="display-4">Bienvenido a CacaoTrigo</h1>
+        <p class="lead mb-0">
+            Administra los productos, las mesas, las reservas y los pedidos de tu negocio.
+        </p>
+    </section>
+
+    <div class="row g-4">
+
+        <!-- Catálogo -->
+        <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="h4 card-title">Catálogo</h2>
+                    <p class="card-text">
+                        Consulta y administra categorías, productos e insumos.
+                    </p>
+
+                    <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
+                        <a asp-controller="Categorias"
+                           asp-action="Index"
+                           class="btn btn-primary">
+                            Categorías
+                        </a>
+
+                        <a asp-controller="Productos"
+                           asp-action="Index"
+                           class="btn btn-outline-primary">
+                            Productos
+                        </a>
+
+                        <a asp-controller="Insumos"
+                           asp-action="Index"
+                           class="btn btn-outline-primary">
+                            Insumos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Operación -->
+        <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="h4 card-title">Operación</h2>
+                    <p class="card-text">
+                        Organiza las mesas, las reservas y los pedidos.
+                    </p>
+
+                    <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
+                        <a asp-controller="Mesas"
+                           asp-action="Index"
+                           class="btn btn-primary">
+                            Mesas
+                        </a>
+
+                        <a asp-controller="Reservas"
+                           asp-action="Index"
+                           class="btn btn-outline-primary">
+                            Reservas
+                        </a>
+
+                        <a asp-controller="Pedidos"
+                           asp-action="Index"
+                           class="btn btn-outline-primary">
+                            Pedidos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promociones -->
+        <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="h4 card-title">Promociones</h2>
+                    <p class="card-text">
+                        Consulta y administra las promociones disponibles.
+                    </p>
+
+                    <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
+                        <a asp-controller="Promociones"
+                           asp-action="Index"
+                           class="btn btn-primary">
+                            Ver promociones
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detalles de pedidos -->
+        <div class="col-12 col-md-6 col-lg-4 d-flex">
+            <div class="card shadow-sm w-100">
+                <div class="card-body d-flex flex-column">
+                    <h2 class="h4 card-title">Detalles de pedidos</h2>
+                    <p class="card-text">
+                        Revisa los productos y las cantidades de cada pedido.
+                    </p>
+
+                    <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
+                        <a asp-controller="DetallesPedido"
+                           asp-action="Index"
+                           class="btn btn-primary">
+                            Ver detalles
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>  
