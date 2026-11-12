@@ -11,22 +11,15 @@ public class PedidosController : Controller
         _pedidoService = pedidoService;
     }
 
-    // GET: Pedidos
     public async Task<IActionResult> Index()
     {
         var pedidos = await _pedidoService.ObtenerTodosAsync();
         return View(pedidos);
     }
 
-    // GET: Pedidos/Details/1
-    public async Task<IActionResult> Details(int? id)
+    public async Task<IActionResult> Details(int id)
     {
-        if (id == null)
-        {
-            return NotFound();
-        }
-
-        var pedido = await _pedidoService.ObtenerPorIdAsync(id.Value);
+        var pedido = await _pedidoService.ObtenerPorIdAsync(id);
 
         if (pedido == null)
         {
@@ -36,20 +29,17 @@ public class PedidosController : Controller
         return View(pedido);
     }
 
-    // GET: Pedidos/Create
     public IActionResult Create()
     {
         return View();
     }
 
-    // POST: Pedidos/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(
         [Bind("Fecha,Estado,NombreContacto,TelefonoContacto,DireccionEntrega")]
         Pedido pedido)
     {
-        // El total se calcula desde los productos agregados al pedido.
         pedido.Total = 0m;
 
         if (pedido.Fecha == default)
@@ -66,25 +56,16 @@ public class PedidosController : Controller
 
         if (!creado)
         {
-            ModelState.AddModelError(
-                string.Empty,
-                "No se pudo guardar el pedido.");
-
+            ModelState.AddModelError(string.Empty, "No se pudo guardar el pedido.");
             return View(pedido);
         }
 
         return RedirectToAction(nameof(Index));
     }
 
-    // GET: Pedidos/Edit/1
-    public async Task<IActionResult> Edit(int? id)
+    public async Task<IActionResult> Edit(int id)
     {
-        if (id == null)
-        {
-            return NotFound();
-        }
-
-        var pedido = await _pedidoService.ObtenerPorIdAsync(id.Value);
+        var pedido = await _pedidoService.ObtenerPorIdAsync(id);
 
         if (pedido == null)
         {
@@ -94,7 +75,6 @@ public class PedidosController : Controller
         return View(pedido);
     }
 
-    // POST: Pedidos/Edit
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(
@@ -114,8 +94,6 @@ public class PedidosController : Controller
             return View(pedido);
         }
 
-        // No permitir que la edición del pedido sobrescriba el total
-        // calculado a partir de sus detalles.
         pedido.Total = pedidoGuardado.Total;
 
         var actualizado = await _pedidoService.ActualizarAsync(
@@ -130,15 +108,9 @@ public class PedidosController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    // GET: Pedidos/Delete/1
-    public async Task<IActionResult> Delete(int? id)
+    public async Task<IActionResult> Delete(int id)
     {
-        if (id == null)
-        {
-            return NotFound();
-        }
-
-        var pedido = await _pedidoService.ObtenerPorIdAsync(id.Value);
+        var pedido = await _pedidoService.ObtenerPorIdAsync(id);
 
         if (pedido == null)
         {
@@ -148,7 +120,6 @@ public class PedidosController : Controller
         return View(pedido);
     }
 
-    // POST: Pedidos/Delete/1
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(
